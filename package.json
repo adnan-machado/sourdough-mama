@@ -1,0 +1,14 @@
+{
+  "name": "sourdough-master",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "build": "echo 'No build step needed'",
+    "preview": "npx serve . -p 3000",
+    "lint": "echo 'No lint step needed'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

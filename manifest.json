@@ -1,0 +1,21 @@
+{
+    "name": "Sourdough Master",
+    "short_name": "Sourdough",
+    "description": "Bake the perfect sourdough bread.",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#3b2a22",
+    "theme_color": "#3b2a22",
+    "icons": [
+        {
+            "src": "https://api.dicebear.com/7.x/pixel-art/svg?seed=bread&backgroundColor=ffb6c1",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "https://api.dicebear.com/7.x/pixel-art/svg?seed=bread&backgroundColor=ffb6c1",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}

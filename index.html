@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sourdough Master</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container" class="game-container select-none">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <img id="start-img" src="start_screen.png" alt="Start Screen" class="full-screen-img">
+        </div>
+
+        <!-- Main Game Screen -->
+        <div id="game-screen" class="screen">
+            <!-- Top HUD -->
+            <div class="hud-top">
+                <div class="hud-left">
+                    <button id="restart-btn" class="pixel-btn restart-btn">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </button>
+                    <div id="state-title" class="state-title hidden">ACTION 1</div>
+                </div>
+                <div id="timer-display" class="timer-box">00:00</div>
+                <div class="hud-right">
+                    <button id="history-btn" class="pixel-btn history-btn">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l2 2"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <div class="action-area">
+                    <button id="action-btn" class="action-btn-raw">
+                        <img id="action-icon" src="temperature.png" alt="Action">
+                    </button>
+                    <div id="action-label" class="action-label">TAP TO ACTION</div>
+                </div>
+            </div>
+
+            <!-- Bottom Comic Strip Style Area -->
+            <div class="branding-area">
+                <div class="speech-container">
+                    <div class="speech-bubble">
+                        <p id="speech-text"></p>
+                    </div>
+                </div>
+                <div class="character-area">
+                    <img id="character-img" src="eyes_open.png" alt="Character" class="character-sprite">
+                </div>
+            </div>
+        </div>
+
+        <!-- Celebration Screen -->
+        <div id="celebration-screen" class="screen">
+            <div class="celebration-content">
+                <img id="celebration-img" src="celebration.gif" alt="Celebration" class="celebration-gif">
+                <h1 id="celebration-score-text" class="celebration-text">100%</h1>
+                <p id="celebration-message" class="celebration-message"></p>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="screen">
+            <div class="leaderboard-container branding-area" style="flex-direction: column; height: 100%; align-items: center; justify-content: flex-start; padding: 40px 20px;">
+                <h1 class="pixel-border" style="padding: 10px 20px; background: #ff9900; margin-bottom: 20px; font-size: 20px;">HIGH SCORES</h1>
+                
+                <div id="final-stats" class="final-stats pixel-border" style="width: 100%; padding: 20px; background: #fff; margin-bottom: 20px; text-align: center;">
+                    <div id="final-score-val" style="font-size: 32px; font-family: var(--font-pixel); color: #ff69b4; margin-bottom: 10px;">100%</div>
+                    <div id="final-message" style="font-size: 14px; line-height: 1.4; color: #5c4033;">Perfect Bake!</div>
+                </div>
+
+                <div id="leaderboard-list" class="leaderboard-list pixel-border" style="width: 100%; flex: 1; padding: 15px; background: rgba(255,255,255,0.8); overflow-y: auto; position: relative;">
+                    <!-- Leaderboard entries injected here -->
+                    <div id="reset-msg" class="reset-message hidden">LEADERBOARD RESET</div>
+                </div>
+
+                <button id="play-again-btn" class="pixel-btn seafoam-btn" style="margin-top: 20px; padding: 15px 30px; font-family: var(--font-pixel); font-size: 14px;">PLAY AGAIN</button>
+            </div>
+        </div>
+
+        <!-- History Modal -->
+        <div id="history-modal" class="modal hidden">
+            <div class="modal-content history-content pixel-border">
+                <div class="modal-header">
+                    <h2>BAKE LOG</h2>
+                    <button id="close-history" class="close-btn">&times;</button>
+                </div>
+                <div id="history-list" class="history-list">
+                    <!-- History items will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Restart Modal -->
+        <div id="restart-modal" class="modal hidden">
+            <div class="modal-content pixel-border">
+                <p>Are you sure you want to cancel this bake?</p>
+                <div class="modal-buttons">
+                    <button id="confirm-yes" class="pixel-btn yes-btn">YES</button>
+                    <button id="confirm-no" class="pixel-btn no-btn">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="start-sound" src="Title Theme - Cooking Mama Soundtrack 4.mp3" preload="auto" loop></audio>
+    <audio id="timer-sound" src="Result - Cooking Mama Soundtrack 4.mp3" preload="auto"></audio>
+    <audio id="celebration-sound" src="Done - Cooking Mama Soundtrack.mp3" preload="auto"></audio>
+    <audio id="refresh-sound" src="refresh leaderboard sound.mp3" preload="auto"></audio>
+
+    <script src="app.js"></script>
+</body>
+</html>
